@@ -692,6 +692,7 @@
  '(bmkp-light-style-autonamed (quote lfringe))
  '(bmkp-light-style-non-autonamed (quote lfringe))
  '(doc-view-continuous t)
+ '(ess-roxy-str "#'")
 )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
