@@ -930,7 +930,7 @@
                   (interactive)
                   (wz-insert-rule-from-point-to-margin ?=)))
 (global-set-key (kbd "C-S-r") 'ej-insert-section)
-(global-set-key (kbd "C-c p") 'ej-header)
+(global-set-key (kbd "C-c e") 'ej-header)
 (global-set-key (kbd "C-<f12>") 'ej-switch-theme)
 
 (add-hook
