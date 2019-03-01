@@ -6,9 +6,33 @@
 ;; Simple switch theme
 
 (defun ej-switch-theme ()
+  ;; (interactive)
+  ;; (call-interactively 'load-theme t))
   (interactive)
-  (mapc #'disable-theme custom-enabled-themes)
-  (call-interactively 'load-theme t))
+  (setq choices-themes '(dichromacy
+                         adwaita
+                         solarized-light
+                         spacemacs-light
+                         tango
+                         gotham
+                         solarized-dark
+                         spacemacs-dark
+                         monokai
+                         tsdh-dark))
+  (let ((choices-string '("[light]dichromacy"
+                          "[light]adwaita"
+                          "[light]solarized"
+                          "[light]spacemacs"
+                          "[light]tango"
+                          "[dark]gotham"
+                          "[dark]solarized"
+                          "[dark]spacemacs"
+                          "[dark]monokai"
+                          "[dark]tsdh")))
+    (setq choosen (completing-read "Theme: " choices-string))
+    (setq index (position choosen choices-string :test #'string=))
+    (mapc #'disable-theme custom-enabled-themes)
+    (load-theme (nth index choices-themes) t)))
 
 ;;----------------------------------------------------------------------
 ;; Split window and open shell.
