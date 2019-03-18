@@ -246,7 +246,7 @@
       (insert (make-string (- fill-column (current-column)) char))
     (insert (make-string (- fill-column (current-column)) ?-))))
 
-(defun wz-insert-rule-and-comment-3 ()
+(defun wz-insert-rule-and-comment-3 (&optional char)
   "Insert a commented rule with 43 dashes (-). Useful to divide
    your code in sections."
   (interactive)
@@ -257,7 +257,10 @@
     nil)
   (let ((column-middle (floor (* 0.625 fill-column))))
     (if (< (current-column) column-middle)
-        (insert (make-string (- column-middle (current-column)) ?-)))))
+      (if char
+          (insert (make-string (- column-middle (current-column)) char))
+        (insert (make-string (- column-middle (current-column)) ?-)))
+      )))
 
 ;;----------------------------------------------------------------------
 ;; Insert sections.
@@ -956,6 +959,16 @@
 (global-set-key (kbd "C-S-r") 'ej-insert-section)
 (global-set-key (kbd "C-c e") 'ej-header)
 (global-set-key (kbd "C-<f12>") 'ej-switch-theme)
+
+;; Comments with tilde (useful for avoid dashes behaviour in markdown)
+(global-set-key (kbd "<C-dead-tilde>")
+                (lambda ()
+                  (interactive)
+                  (wz-insert-rule-from-point-to-margin ?~)))
+(global-set-key (kbd "<C-M-dead-tilde>")
+                (lambda ()
+                  (interactive)
+                  (wz-insert-rule-and-comment-3 ?~)))
 
 (add-hook
  'markdown-mode-hook
